@@ -1,4 +1,6 @@
 require 'date'
+require 'themoviedb-api'
+
 
 class Search_movie
 
@@ -28,23 +30,27 @@ class Search_movie
     end
         
       def search_actor(name)
-            Tmdb::Api.key('2ed8d3de86cb00cde812d0ade32ea313')
+          Tmdb::Api.key('2ed8d3de86cb00cde812d0ade32ea313')
               
+          search = Tmdb::Search.person(name).results 
         
-            search = Tmdb::Search.person(name).results
-            array = search[0]['known_for']
-          
-
-            if search[0] != nil 
-
-               array.each_with_index {|a, index| return array[index]['title'] }
-
-            else
-
-              return "We'are sorry it's not in our database "
-
-            end
+         if search[0] != nil
+          array = search[0]['known_for']
+          array.each_with_index {|ele, index| puts array[index]['original_title'] }
+            
+         else
+           puts  "We'are sorry it's not in our database"
+         end
       end
+
+    def add(array, *input)
+
+      array << [input]
+
+    end
+
+
+
 
 end
 
@@ -52,4 +58,5 @@ end
 busca = Search_movie.new
 
 #busca.premiere('2020-12-11')
-#busca.search_actor('tom cruise')
+#print busca.search_title('dsadassaf')
+busca.search_actor('dsadsads ')
