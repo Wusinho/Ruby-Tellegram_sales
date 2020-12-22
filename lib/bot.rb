@@ -15,6 +15,7 @@ class Bot
     @logic = Search_movie.new
     @user_search = []
     @user_movies = ['zero']
+    
 
    
   end
@@ -37,21 +38,46 @@ class Bot
       bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
       
       when '/add'
-      logic.add_movie(@user_movies, @user_search)
-      @show = logic.show(@user_movies)
-      bot.api.send_message(chat_id: message.chat.id, text: "Your movie list #{@show}")
-
-      else
-      bot.api.send_message(chat_id: message.chat.id, text: "Your search : #{@user_input} ")
-      @user_search = logic.search_title(@user_input)
       
-      bot.api.send_message(chat_id: message.chat.id, text: "#{@user_search}")
+      logic.add_movie(@user_movies, @user_search)
+      @show = show(bot, message, @user_movies)
+      
+      when '/pay'
+      @pay = logic.pay(@user_movies, @cost)
+        bot.api.send_message(chat_id: message.chat.id, text: "Your total check is  #{@pay} $")
+      
+      
+      else
+      #bot.api.send_message(chat_id: message.chat.id, text: "Your search : #{@user_input} ")
+      @user_search = logic.search_title(@user_input)
+      @premiere = logic.premiere
+      bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@user_search}")
+      bot.api.send_message(chat_id: message.chat.id, text: " #{@premiere}")
 
       end
     end
     end
     end
   end
+
+  def show(bot, message, new_array)     
+      new_array.each_with_index do |ele, index| 
+      if index > 0
+        bot.api.send_message(chat_id: message.chat.id, text: "Your movie list" + "\n" + "#{index}.- #{ele}  ")
+      
+      end
+    end
+  end
+
+  def welcome
+    'You can search for any movies you want '
+
+    
+  end
+
+
+
+
 
 
 end
