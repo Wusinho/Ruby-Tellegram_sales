@@ -67,7 +67,7 @@ class Search_movie
     def show(new_array)
       new_array.each_with_index do |ele, index| 
         if index > 0
-        return " #{index}.- #{ele} " 
+        return "#{index}.- #{ele} " 
         end
       end
     end

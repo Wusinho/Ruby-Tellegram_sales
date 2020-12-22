@@ -14,7 +14,7 @@ class Bot
     @name_bot = Faker::Name.name
     @logic = Search_movie.new
     @user_search = []
-    @user_pick = ['zero']
+    @user_movies = ['zero']
 
    
   end
@@ -37,8 +37,8 @@ class Bot
       bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
       
       when '/add'
-      logic.add_movie(@user_pick, @user_search)
-      @show = logic.show(@user_pick)
+      logic.add_movie(@user_movies, @user_search)
+      @show = logic.show(@user_movies)
       bot.api.send_message(chat_id: message.chat.id, text: "Your movie list #{@show}")
 
       else
