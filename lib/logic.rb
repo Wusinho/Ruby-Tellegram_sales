@@ -18,7 +18,7 @@ class Search_movie
         
         novie_release = DateTime.parse(@search[0]['release_date']) >> 1
         
-        date_now > novie_release ? 'No es de estreno' : 'Pelicula de Estreno'
+        date_now > novie_release ? 'Regular' : 'Premier'
        
     end
 
@@ -41,11 +41,17 @@ class Search_movie
           end
     end
         
+    def movie_synopxis
+
+       return @Movie_details['overview']
+      
+    end
+
      
 
     def add_movie(array, input)
 
-      if premiere == 'Pelicula de Estreno'
+      if premiere == 'Premier'
         @n_premier += 1
 
         array << input

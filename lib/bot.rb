@@ -47,8 +47,10 @@ class Bot
       
       @user_search = logic.search_title(@user_input)
       @premiere = logic.premiere
+      @movie_sum = logic.movie_synopxis
       bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@user_search}")
       bot.api.send_message(chat_id: message.chat.id, text: "#{@premiere}")
+      bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_sum}")
 
       end
     end
