@@ -3,13 +3,28 @@ require 'themoviedb-api'
 
 
 class Search_movie
+  attr_accessor :new_array
+
+  def initialize
+    @user_pick = {
+      movie_tile: '' ,
+      movie_synopsis: '',
+      premiere: 0,
+      regular: 0
+    }
+    
+  
+  end
+
+
+
 
     def premiere(release_date)
         date_now = DateTime.now
         
-        prueba = DateTime.parse(release_date) >> 1
+        novie_release = DateTime.parse(release_date) >> 1
         
-        date_now > prueba ? 'No es de estreno' : 'Pelicula de Estreno'
+        date_now > novie_release ? 'No es de estreno' : 'Pelicula de Estreno'
        
     end
 
@@ -18,9 +33,11 @@ class Search_movie
         
           search = Tmdb::Search.movie(name, language: 'en').results
 
+          premiere(search[0]['release_date'])
+
           if search[0] != nil 
 
-          return search[0]['original_title'], search[0]['overview']
+          return search[0]['original_title']#, search[0]['overview']
 
           else
 
@@ -43,20 +60,18 @@ class Search_movie
          end
       end
 
-    def add(array, *input)
+    def add_movie(array, input)
+            array << input
+    end
 
-      array << [input]
-
+    def show(new_array)
+      new_array.each_with_index do |ele, index| 
+        if index > 0
+        return " #{index}.- #{ele} " 
+        end
+      end
     end
 
 
 
-
 end
-
-
-busca = Search_movie.new
-
-#busca.premiere('2020-12-11')
-#print busca.search_title('dsadassaf')
-busca.search_actor('dsadsads ')

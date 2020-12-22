@@ -13,7 +13,9 @@ class Bot
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
     @name_bot = Faker::Name.name
     @logic = Search_movie.new
-    @user_picks = []
+    @user_search = []
+    @user_pick = ['zero']
+
    
   end
 
@@ -33,12 +35,17 @@ class Bot
 
       when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
-      #return @switch.clear
-         
+      
+      when '/add'
+      logic.add_movie(@user_pick, @user_search)
+      @show = logic.show(@user_pick)
+      bot.api.send_message(chat_id: message.chat.id, text: "Your movie list #{@show}")
+
       else
       bot.api.send_message(chat_id: message.chat.id, text: "Your search : #{@user_input} ")
-      @prueba = logic.search_title(@user_input)
-      bot.api.send_message(chat_id: message.chat.id, text: "#{@prueba}")
+      @user_search = logic.search_title(@user_input)
+      
+      bot.api.send_message(chat_id: message.chat.id, text: "#{@user_search}")
 
       end
     end
