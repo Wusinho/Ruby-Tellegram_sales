@@ -12,7 +12,7 @@ class Search_movie
       premiere: 0,
       regular: 0
     }
-    @search = []
+    #@search = []
   
   end
 
@@ -46,19 +46,7 @@ class Search_movie
           end
     end
         
-      # def search_actor(name)
-      #     Tmdb::Api.key('2ed8d3de86cb00cde812d0ade32ea313')
-              
-      #     search = Tmdb::Search.person(name).results 
-        
-      #    if search[0] != nil
-      #     array = search[0]['known_for']
-      #     array.each_with_index {|ele, index| return array[index]['original_title'] }
-            
-      #    else
-      #      puts  "We'are sorry it's not in our database"
-      #    end
-      # end
+    
 
     def add_movie(array, input)
             array << input
