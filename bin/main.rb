@@ -1,3 +1,4 @@
 require_relative '../lib/bot.rb'
 
-Bot.new
+nuevo = Bot.new
+nuevo.start_sale

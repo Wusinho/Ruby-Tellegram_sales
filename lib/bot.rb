@@ -1,17 +1,15 @@
 require 'telegram/bot'
-require 'themoviedb-api'
 require 'faker'
-require 'date'
 require_relative 'logic'
 
 
 
 class Bot
-  attr_reader :token_telegram, :logic
+  
 
   def initialize
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
-    @name_bot = Faker::Name.name
+    
     @logic = Search_movie.new
     @user_search = []
     @user_movies = ['zero']
@@ -28,26 +26,26 @@ class Bot
       @user_input = message.text
       case @user_input
       when '/start'
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello I am #{@name_bot}, I will be your assistant today. #{welcome}" )
+      bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}. Welcome to Movies, #{welcome}" )
 
       when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
       
       when '/add'
       
-      #logic.add_movie(@user_movies, @user_search)
-      #@show = show(bot, message, @user_movies)
+      @logic.add_movie(@user_movies, @user_search)
+      @show = show(bot, message, @user_movies)
       
       when '/pay'
-      @pay = logic.pay(@user_movies, @cost)
-        bot.api.send_message(chat_id: message.chat.id, text: "Your total check is  #{@pay} $")
-      
-      
+      @pay = @logic.pay
+      bot.api.send_message(chat_id: message.chat.id, text: "Your total check is  #{@pay} $")
+      @logic.empty
       else
       
-      @user_search = logic.search_title(@user_input)
-      premiere
-      @movie_sum = logic.movie_synopxis
+      @user_search = @logic.search_title(@user_input)
+      @movie_sum = @logic.movie_synopxis
+      
+      @premiere = @logic.premiere
       bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@user_search}")
       bot.api.send_message(chat_id: message.chat.id, text: "#{@premiere}")
       bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_sum}")
@@ -70,31 +68,22 @@ class Bot
   def welcome
     'You can search for any movies you want 
     Premier cost 1.5 and Regular 1
-    Just type /add to put the movie into cart
-    Just type /pay to purchase your list of movies'
+    Instruction :
+    1.- Search for the title of a movie you want to see
+    2.- Type /add to put the movie into your cart if you do not want it you can continue searching
+    3.- Type /pay to purchase all the movies from your list'
 
     
   end
 
-  def premiere
-
-    # puts @Movie_details
-     #    puts @search[0]
-      date_now = DateTime.now
-     
-      novie_release = DateTime.parse(@search[0]['release_date']) >> 1
-     
-      date_now > novie_release ? 'Regular' : 'Premier'
-    
- end
-
+ 
 
 
 
 end
 
 
-nuevo = Bot.new
-nuevo.start_sale
+#nuevo = Bot.new
+#nuevo.start_sale
 
 
