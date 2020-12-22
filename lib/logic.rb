@@ -12,17 +12,14 @@ class Search_movie
       premiere: 0,
       regular: 0
     }
-    #@search = []
+    @search = []  
   
   end
 
-
-
-
-    def premiere(release_date)
+    def premiere
         date_now = DateTime.now
         
-        novie_release = DateTime.parse(release_date) >> 1
+        novie_release = DateTime.parse(@search[0]['release_date']) >> 1
         
         date_now > novie_release ? 'No es de estreno' : 'Pelicula de Estreno'
        
@@ -36,8 +33,9 @@ class Search_movie
           
 
           if @search[0] != nil 
+            premiere
 
-          return @search[0]['original_title']
+            return @search[0]['original_title']
 
           else
 
@@ -46,7 +44,7 @@ class Search_movie
           end
     end
         
-    
+     
 
     def add_movie(array, input)
             array << input
@@ -54,7 +52,7 @@ class Search_movie
 
     def pay(array , cost)
 
-      return (array.count-1) * cost
+      return array.count * cost
       
     end    
 
