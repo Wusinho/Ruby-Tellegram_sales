@@ -13,25 +13,19 @@ class Search_movie
     @Movie_details = []
   end
 
-    def premiere
-        date_now = DateTime.now
-        
-        novie_release = DateTime.parse(@search[0]['release_date']) >> 1
-        
-        date_now > novie_release ? 'Regular' : 'Premier'
-       
-    end
+   
 
     def search_title(name)
         Tmdb::Api.key('2ed8d3de86cb00cde812d0ade32ea313')
         
           @search = Tmdb::Search.movie(name, language: 'en').results
+
           @Movie_details = @search[0]
+
           
 
           if @Movie_details != nil 
-            
-
+           
             return @search[0]['original_title']
 
           else
@@ -41,6 +35,20 @@ class Search_movie
           end
     end
         
+
+    def premiere
+
+     # puts @Movie_details
+      #    puts @search[0]
+       date_now = DateTime.now
+      
+       novie_release = DateTime.parse(@search[0]['release_date']) >> 1
+      
+       date_now > novie_release ? 'Regular' : 'Premier'
+     
+  end
+
+
     def movie_synopxis
 
        return @Movie_details['overview']
@@ -49,21 +57,21 @@ class Search_movie
 
      
 
-    def add_movie(array, input)
+    # def add_movie(array, input)
 
-      if premiere == 'Premier'
-        @n_premier += 1
+    #   if premiere == 'Premier'
+    #     @n_premier += 1
 
-        array << input
+    #     array << input
 
-      else
-        @n_regular += 1
-        array << input
+    #   else
+    #     @n_regular += 1
+    #     array << input
 
-      end
+    #   end
 
 
-    end
+    # end
 
     def pay(no_parameter=nil, no_parameter0=nil)
 
@@ -74,3 +82,10 @@ class Search_movie
 
 
 end
+
+
+nueva = Search_movie.new
+
+nueva.search_title('terminator')
+puts nueva.premiere#('2020-12-20')
+#puts DateTime.parse('1984-10-26') 

@@ -35,8 +35,8 @@ class Bot
       
       when '/add'
       
-      logic.add_movie(@user_movies, @user_search)
-      @show = show(bot, message, @user_movies)
+      #logic.add_movie(@user_movies, @user_search)
+      #@show = show(bot, message, @user_movies)
       
       when '/pay'
       @pay = logic.pay(@user_movies, @cost)
@@ -46,7 +46,7 @@ class Bot
       else
       
       @user_search = logic.search_title(@user_input)
-      @premiere = logic.premiere
+      premiere
       @movie_sum = logic.movie_synopxis
       bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@user_search}")
       bot.api.send_message(chat_id: message.chat.id, text: "#{@premiere}")
@@ -76,7 +76,17 @@ class Bot
     
   end
 
+  def premiere
 
+    # puts @Movie_details
+     #    puts @search[0]
+      date_now = DateTime.now
+     
+      novie_release = DateTime.parse(@search[0]['release_date']) >> 1
+     
+      date_now > novie_release ? 'Regular' : 'Premier'
+    
+ end
 
 
 
