@@ -3,17 +3,14 @@ require 'themoviedb-api'
 
 
 class Search_movie
-  attr_accessor :new_array
 
   def initialize
-    @user_pick = {
-      movie_tile: '' ,
-      movie_synopsis: '',
-      premiere: 0,
-      regular: 0
-    }
+    @n_premier = 0
+    @cost_premier = 1.5
+    @n_regular = 0
+    @cost_regular = 1
     @search = []  
-  
+    @Movie_details = []
   end
 
     def premiere
@@ -29,11 +26,11 @@ class Search_movie
         Tmdb::Api.key('2ed8d3de86cb00cde812d0ade32ea313')
         
           @search = Tmdb::Search.movie(name, language: 'en').results
-
+          @Movie_details = @search[0]
           
 
-          if @search[0] != nil 
-            premiere
+          if @Movie_details != nil 
+            
 
             return @search[0]['original_title']
 
@@ -47,12 +44,24 @@ class Search_movie
      
 
     def add_movie(array, input)
-            array << input
+
+      if premiere == 'Pelicula de Estreno'
+        @n_premier += 1
+
+        array << input
+
+      else
+        @n_regular += 1
+        array << input
+
+      end
+
+
     end
 
-    def pay(array , cost)
+    def pay(no_parameter=nil, no_parameter0=nil)
 
-      return array.count * cost
+      return (@n_premier*@cost_premier )+ (@n_regular*@cost_regular)
       
     end    
 

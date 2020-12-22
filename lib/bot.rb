@@ -21,10 +21,6 @@ class Bot
   end
 
   def start_sale
-
-    @switch = [1]
-
-    while @switch != []
       
     Telegram::Bot::Client.run(@token_telegram) do |bot|
     bot.listen do |message|
@@ -32,7 +28,7 @@ class Bot
       @user_input = message.text
       case @user_input
       when '/start'
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello I am #{@name_bot}, I will be your assistant today.")
+      bot.api.send_message(chat_id: message.chat.id, text: "Hello I am #{@name_bot}, I will be your assistant today. #{welcome}" )
 
       when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
@@ -48,16 +44,16 @@ class Bot
       
       
       else
-      #bot.api.send_message(chat_id: message.chat.id, text: "Your search : #{@user_input} ")
+      
       @user_search = logic.search_title(@user_input)
       @premiere = logic.premiere
       bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@user_search}")
-      bot.api.send_message(chat_id: message.chat.id, text: " #{@premiere}")
+      bot.api.send_message(chat_id: message.chat.id, text: "#{@premiere}")
 
       end
     end
     end
-    end
+    
   end
 
   def show(bot, message, new_array)     
@@ -70,7 +66,10 @@ class Bot
   end
 
   def welcome
-    'You can search for any movies you want '
+    'You can search for any movies you want 
+    Premier cost 1.5 and Regular 1
+    Just type /add to put the movie into cart
+    Just type /pay to purchase your list of movies'
 
     
   end
