@@ -77,4 +77,4 @@ rspec
 
 ## License
 
-  <p>This project is <a href="../feature/LICENSE">MIT</a> licensed.</p>
+This project is [MIT](LICENSE) licensed.
