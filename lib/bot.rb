@@ -9,17 +9,24 @@ class Bot
 
   def initialize
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
-    
     @logic = Search_movie.new
-    @user_search = []
-    @user_movies = ['zero']
     
+    @search_info = []
+    @movie_title = []
+    @movie_sin = []
+    @movie_prem = []
+    
+    @user_movies = []
+    
+    
+    
+    @cost = 1
 
    
   end
 
   def start_sale
-      
+   
     Telegram::Bot::Client.run(@token_telegram) do |bot|
     bot.listen do |message|
       @user_name = message.from.first_name
@@ -33,22 +40,33 @@ class Bot
       
       when '/add'
       
-      @logic.add_movie(@user_movies, @user_search)
+      @logic.add_movie(@user_movies, @movie_title)
+      
+     
       @show = show(bot, message, @user_movies)
       
       when '/pay'
-      @pay = @logic.pay
+
+      @pay = @logic.pay(@user_movies, @cost)
       bot.api.send_message(chat_id: message.chat.id, text: "Your total check is  #{@pay} $")
-      @logic.empty
+      @user_movies.clear
+      
+
       else
       
-      @user_search = @logic.search_title(@user_input)
-      @movie_sum = @logic.movie_synopxis
+      @movie_title = @logic.search_title(@user_input, 'original_title', @search_info)
+      if @movie_title != nil
+      @movie_overview = @logic.search_title(@user_input,'overview', @search_info )
+      @release_date = @logic.search_title(@user_input,'release_date', @search_info )
       
-      @premiere = @logic.premiere
-      bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@user_search}")
-      bot.api.send_message(chat_id: message.chat.id, text: "#{@premiere}")
-      bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_sum}")
+      @movie_prem = @logic.premiere(@release_date)
+
+      bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@movie_title}") 
+      bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_overview}")
+      bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_prem}")
+
+      end
+      
 
       end
     end
@@ -57,11 +75,11 @@ class Bot
   end
 
   def show(bot, message, new_array)     
-      new_array.each_with_index do |ele, index| 
-      if index > 0
-        bot.api.send_message(chat_id: message.chat.id, text: "Your movie list" + "\n" + "#{index}.- #{ele}  ")
+      new_array.each do |ele| 
       
-      end
+        bot.api.send_message(chat_id: message.chat.id, text: "Your movie list : #{ele}  ")
+      
+      
     end
   end
 
