@@ -71,7 +71,7 @@ class Bot
 
   def welcome
     'You can search for any movies you want
-    Premier cost 1.5 and Regular 1
+    All movies cots $1
     Instruction :
     1.- Search for the title of a movie you want to see
     2.- Type /add to put the movie into your cart if you do not want it you can continue searching
