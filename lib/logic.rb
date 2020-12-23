@@ -13,18 +13,15 @@ class Search_movie
         Tmdb::Api.key(@token_tmdb)
           
           search = Tmdb::Search.movie(name, language: 'en').results
-
+          
           if search[0] != nil 
+            
             array = search[0]
+            
             return search[0][detail]
           end
     end
-        
-    def overview(arr)
-
-      return arr
-      
-    end
+   
 
     def add_movie (arr, input)
       arr << input
