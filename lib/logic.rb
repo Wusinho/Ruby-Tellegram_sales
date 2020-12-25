@@ -17,8 +17,10 @@ class Search_movie
 
       array = search[0]
 
-      search[0][detail]
-    end
+      search.each_with_index do |ele, index|
+        return search[index]['original_title']    
+      end
+
   end
 
   def add_movie(arr, input)
