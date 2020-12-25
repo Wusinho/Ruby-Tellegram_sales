@@ -7,23 +7,18 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.1.7)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
-    faker (2.15.1)
-      i18n (>= 1.6, < 2)
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.8.5)
-      concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     mime-types (3.3.1)
@@ -70,10 +65,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  faker (~> 2.15)
   rspec (~> 3.10)
   telegram-bot-ruby
   themoviedb-api (~> 1.3)
 
 BUNDLED WITH
-   2.1.4
+   2.1.2

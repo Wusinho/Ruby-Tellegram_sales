@@ -8,19 +8,17 @@ class Search_movie
     @token_tmdb = '2ed8d3de86cb00cde812d0ade32ea313'
   end
 
-  def search_title(name, detail, _array)
+  def search_title(name, detail)
     Tmdb::Api.key(@token_tmdb)
 
-    search = Tmdb::Search.movie(name, language: 'en').results
+    search = Tmdb::Search.movie(name).results
 
     unless search[0].nil?
 
-      array = search[0]
-
       search.each_with_index do |ele, index|
-        return search[index]['original_title']    
+        show(bot, message, search[index][detail])
       end
-
+    end
   end
 
   def add_movie(arr, input)
@@ -32,10 +30,22 @@ class Search_movie
 
     novie_release = (DateTime.parse(release_date)) >> 1
 
-    date_now > novie_release ? 'Regular' : 'Premier'
+    date_now > novie_release ? 'Regular' : 'Just Released'
   end
 
   def pay(arr, cost)
     arr.count * cost
   end
+
+  def show(bot, message, new_array)
+    new_array.each do |ele|
+      bot.api.send_message(chat_id: message.chat.id, text: "Your movie list : #{ele}  ")
+    end
+  end
+
 end
+
+
+#nuevo = Search_movie.new
+
+#nuevo.search_details('alien', 'original_title')

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'telegram/bot'
-require 'faker'
+
 require_relative 'logic'
 
 class Bot
@@ -26,7 +26,7 @@ class Bot
         @user_input = message.text
         case @user_input
         when '/start'
-          bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}. Welcome to Movies, #{welcome}")
+          bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
 
         when '/stop'
           bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
@@ -35,7 +35,7 @@ class Bot
 
           @logic.add_movie(@user_movies, @movie_title)
 
-          @show = show(bot, message, @user_movies)
+          #@show = show(bot, message, @user_movies)
 
         when '/pay'
 
@@ -45,10 +45,10 @@ class Bot
 
         else
 
-          @movie_title = @logic.search_title(@user_input, 'original_title', @search_info)
+          @movie_title = @logic.search_title(@user_input, 'original_title')
           unless @movie_title.nil?
-            @movie_overview = @logic.search_title(@user_input, 'overview', @search_info)
-            @release_date = @logic.search_title(@user_input, 'release_date', @search_info)
+            @movie_overview = @logic.search_title(@user_input, 'overview')
+            @release_date = @logic.search_title(@user_input, 'release_date')
 
             @movie_prem = @logic.premiere(@release_date)
 
@@ -63,20 +63,9 @@ class Bot
     end
   end
 
-  def show(bot, message, new_array)
-    new_array.each do |ele|
-      bot.api.send_message(chat_id: message.chat.id, text: "Your movie list : #{ele}  ")
-    end
-  end
+ 
 
-  def welcome
-    'You can search for any movies you want
-    All movies cots $1
-    Instruction :
-    1.- Search for the title of a movie you want to see
-    2.- Type /add to put the movie into your cart if you do not want it you can continue searching
-    3.- Type /pay to purchase all the movies from your list'
-  end
+
 end
 
 # nuevo = Bot.new
