@@ -10,11 +10,9 @@ class Bot
     @logic = Search_movie.new
 
     @search_info = []
-    @movie_title = []
-    @movie_sin = []
-    @movie_prem = []
+   
 
-    @user_movies = []
+    @user_list = []
 
     @cost = 1
   end
@@ -29,34 +27,25 @@ class Bot
           bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
 
         when '/stop'
-          bot.api.send_message(chat_id: message.chat.id, text: "Goodbye #{@user_name}")
+          
 
         when '/add'
-
-          @logic.add_movie(@user_movies, @movie_title)
-
-          #@show = show(bot, message, @user_movies)
-
+          
+          
+        
+         
         when '/pay'
 
-          @pay = @logic.pay(@user_movies, @cost)
-          bot.api.send_message(chat_id: message.chat.id, text: "Your total check is  #{@pay} $")
-          @user_movies.clear
+        when '/info'
+          
 
         else
 
-          @movie_title = @logic.search_title(@user_input, 'original_title')
-          unless @movie_title.nil?
-            @movie_overview = @logic.search_title(@user_input, 'overview')
-            @release_date = @logic.search_title(@user_input, 'release_date')
+          @logic.search_title(@user_input, bot, message)
+        
+          @logic.show(bot, message)
 
-            @movie_prem = @logic.premiere(@release_date)
-
-            bot.api.send_message(chat_id: message.chat.id, text: "Movie title #{@movie_title}")
-            bot.api.send_message(chat_id: message.chat.id, text: @movie_overview.to_s)
-            bot.api.send_message(chat_id: message.chat.id, text: @movie_prem.to_s)
-
-          end
+          #@search_info.clear
 
         end
       end
@@ -68,5 +57,4 @@ class Bot
 
 end
 
-# nuevo = Bot.new
-# nuevo.start_sale
+
