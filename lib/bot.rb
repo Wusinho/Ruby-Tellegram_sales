@@ -15,6 +15,8 @@ class Bot
     @user_list = []
 
     @cost = 1
+
+    puts 'running'
   end
 
   def start_sale
@@ -24,6 +26,7 @@ class Bot
         @user_input = message.text
         
         if @user_input == '/start'
+          
           bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
         
         elsif @user_input[0..4] == '/info'
