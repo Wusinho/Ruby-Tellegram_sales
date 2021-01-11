@@ -22,30 +22,21 @@ class Bot
       bot.listen do |message|
         @user_name = message.from.first_name
         @user_input = message.text
-        case @user_input
-        when '/start'
-          bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
-
-        when '/stop'
-          
-
-        when '/add'
-          
-          
         
-         
-        when '/pay'
+        if @user_input == '/start'
+          bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
+        
+        elsif @user_input[0..4] == '/info'
 
-        when '/info'
-          
+          @logic.info(bot, message, @user_input)
 
         else
 
-          @logic.search_title(@user_input, bot, message)
+          @logic.search_title(@user_input)
         
           @logic.show(bot, message)
 
-          #@search_info.clear
+          
 
         end
       end

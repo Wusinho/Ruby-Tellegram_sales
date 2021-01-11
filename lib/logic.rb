@@ -11,7 +11,7 @@ class Search_movie
     @search = []
   end
 
-  def search_title(name, bot,message)
+  def search_title(name)
     Tmdb::Api.key(@token_tmdb)
 
     @search = Tmdb::Search.movie(name).results
@@ -23,20 +23,23 @@ class Search_movie
     end
   end
   
+
   def show(bot, message)
+
     @search.each_with_index do |ele, index|
-    
-      bot.api.send_message(chat_id: message.chat.id, text: "Your search : #{@search[index]['original_title']}  /info")
-     
+      bot.api.send_message(chat_id: message.chat.id, text: "Your title search : #{@search[index]['original_title']} " "/info#{index}")
+
     end 
   end
 
-  def show(bot, message)
-    @search.each_with_index do |ele, index|
-      bot.api.send_message(chat_id: message.chat.id, text: "Your search : #{@search[index]['original_title']}  /info")
-     
-    end 
+
+
+  def info(bot, message, user_input)
+    index = user_input[5..6].to_i
+      bot.api.send_message(chat_id: message.chat.id, text: "#{@search[index]['overview']}  /add")
   end
+
+
 
 
 
