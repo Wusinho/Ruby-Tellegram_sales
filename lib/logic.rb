@@ -34,7 +34,7 @@ class Search_movie
 
 
 
-  def info(bot, message, user_input)
+  def movie_overview(bot, message, user_input)
     index = user_input[5..6].to_i
       bot.api.send_message(chat_id: message.chat.id, text: "#{@search[index]['original_title']} " "/add#{index}")
       bot.api.send_message(chat_id: message.chat.id, text: "Release date: #{@search[index]['release_date']} ")
@@ -59,7 +59,7 @@ class Search_movie
 
   def pay(bot, message, arr, cost)
     total = arr.count * cost
-    bot.api.send_message(chat_id: message.chat.id, text: "Your total bill is $#{total}")
+    bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
 
   end
 

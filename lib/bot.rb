@@ -9,7 +9,6 @@ class Bot
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
     @logic = Search_movie.new
 
-
     @cart_list = []
 
     @cost = 1
@@ -31,7 +30,7 @@ class Bot
         
         elsif @user_input[0..4] == '/info'
 
-          @logic.info(bot, message, @user_input)
+          @logic.movie_overview(bot, message, @user_input)
 
         elsif @user_input[0..3] == '/add'
         
@@ -56,11 +55,12 @@ class Bot
  
   def instruction
     "You can search for any kind of movies you want
-    All movies cots $#{@cost}
+    All movies cost $#{@cost}
     Instruction :
     1.- Search for the title of a movie you want to see.
-    2.- Type /add to put the movie into your cart. If you do not want it you can keep searching.
-    3.- Type /pay to purchase all the movies from your list."
+    2.- Click /info to have a brief description of the movie. 
+    3.- Click /add to put the movie into your cart. If you do not want it you can keep searching.
+    4.- Click /pay to purchase all the movies from your list."
 end
 
 
