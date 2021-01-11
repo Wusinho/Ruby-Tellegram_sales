@@ -24,7 +24,7 @@ class Search_movie
   end
   
 
-  def show(bot, message)
+  def show_list(bot, message)
 
     @search.each_with_index do |ele, index|
       bot.api.send_message(chat_id: message.chat.id, text: "Your title search : #{@search[index]['original_title']} " "/info#{index}")
@@ -61,7 +61,7 @@ class Search_movie
   def pay(bot, message, arr, cost)
     total = arr.count * cost
     bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
-    
+
   end
 
  
