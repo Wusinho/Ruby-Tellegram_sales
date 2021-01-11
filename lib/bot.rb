@@ -26,12 +26,17 @@ class Bot
         @user_input = message.text
         
         if @user_input == '/start'
-          
+
           bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
         
         elsif @user_input[0..4] == '/info'
 
           @logic.info(bot, message, @user_input)
+
+        elsif @user_input[0..3] == '/add'
+        
+          @logic.add_cart(bot, message, @user_input, @user_list)
+
 
         else
 
