@@ -41,11 +41,8 @@ class Bot
           @logic.pay(bot, message, @cart_list, @cost)
         else
 
-          @logic.search_title(@user_input)
-        
-          @logic.show(bot, message)
-
-          
+          @logic.search_title(@user_input)       
+          @logic.show_list(bot, message)
 
         end
       end

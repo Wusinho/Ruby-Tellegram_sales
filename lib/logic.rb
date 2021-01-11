@@ -56,11 +56,12 @@ class Search_movie
     
   end
 
+#private 
 
   def pay(bot, message, arr, cost)
     total = arr.count * cost
     bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
-
+    
   end
 
  
