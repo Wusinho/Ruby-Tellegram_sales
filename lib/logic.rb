@@ -7,7 +7,6 @@ class Search_movie
   def initialize
     @token_tmdb = '2ed8d3de86cb00cde812d0ade32ea313'
     
-    
     @search = []
   end
 
@@ -16,7 +15,6 @@ class Search_movie
 
     @search = Tmdb::Search.movie(name).results
 
-      
       unless @search[0].nil?
         @search
        
@@ -31,8 +29,6 @@ class Search_movie
 
     end 
   end
-
-
 
   def movie_overview(bot, message, user_input)
     index = user_input[5..6].to_i
@@ -49,14 +45,11 @@ class Search_movie
     cart_list << @search[index]['original_title']
     cart_list.each_with_index do |ele, index|
 
-    
     bot.api.send_message(chat_id: message.chat.id, text: "#{index+1}.-  #{ele}")
     end
     end
     
   end
-
-#private 
 
   def pay(bot, message, arr, cost)
     total = arr.count * cost

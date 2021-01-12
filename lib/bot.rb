@@ -24,7 +24,6 @@ class Bot
         
         if @user_input == '/start'
           bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
-
           bot.api.send_message(chat_id: message.chat.id, text: instruction)
 
         
