@@ -8,12 +8,12 @@ In this project, I created a bot that helps the users to buy movies online.
 
 In this project, I make a Telegram bot the API given by the BotFather from telegram and the Api TMDB
 
-# Descrition
+# Description
 
 With this bot:
 You can search for your movies by tittle, add them to your shopping cart and buy them.
 
-## :computer: Built With
+## Built With
 
 - Ruby
 - Ruby gem Telegram-bot
@@ -21,7 +21,7 @@ You can search for your movies by tittle, add them to your shopping cart and buy
 - Ruby gem bundle
 - Ruby themoviedb-api
 
-## :wrench: Getting Started
+## Getting Started
 
 > Take a copy of this project locally
 
@@ -59,8 +59,8 @@ rspec
 
 <b>Heber Lazo</b>
 
-- Github: [@Wusinho](https://github.com/Wusinho)
-- LinkedIn: [in/web-developer](https://www.linkedin.com/in/heber-lazo-benza-523266133/)
+- Github: [@Heber-Lazo](https://github.com/Wusinho)
+- LinkedIn: [@Heber-Lazo](https://www.linkedin.com/in/heber-lazo-benza-523266133/)
 
 ## Acknowledgments
 
