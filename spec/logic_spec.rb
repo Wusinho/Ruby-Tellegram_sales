@@ -4,7 +4,6 @@ require_relative '../lib/logic'
 require 'rspec'
 
 describe Search_movie do
-  describe 'premiere:' do
   
     it 'looks if the movie exists' do
       movie_title = Search_movie.new
@@ -31,5 +30,5 @@ describe Search_movie do
       pay = Search_movie.new
       expect(pay.pay(bot, message, [], 1)).to eql("Your total purchase is $0")
     end
-  end
+  
 end
