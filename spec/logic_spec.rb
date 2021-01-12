@@ -20,7 +20,6 @@ describe Search_movie do
       expect(movie_title.show_list(bot, message)).to be_a(Array)
     end
 
-
     it 'returns the total amount you will need to pay' do
       pay = Search_movie.new
       expect(pay.pay(bot, message, ['terminator', 'the croods'], 1)).to eql("Your total purchase is $2")
@@ -30,5 +29,5 @@ describe Search_movie do
       pay = Search_movie.new
       expect(pay.pay(bot, message, [], 1)).to eql("Your total purchase is $0")
     end
-  
+
 end

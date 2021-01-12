@@ -56,7 +56,7 @@ class Bot
     1.- Search for the title of a movie you want to see.
     2.- Click /info to have a brief description of the movie. 
     3.- Click /add to put the movie into your cart. If you do not want it you can keep searching.
-    4.- Click /pay to purchase all the movies from your list."
+    4.- Type /pay to purchase all the movies from your list."
 end
 
 
