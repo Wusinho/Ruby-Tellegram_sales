@@ -2,6 +2,7 @@
 
 require 'date'
 require 'themoviedb-api'
+require 'telegram/bot'
 
 class Search_movie
 
@@ -9,7 +10,7 @@ attr_accessor :search
 
   def initialize
     @token_tmdb = '2ed8d3de86cb00cde812d0ade32ea313'
-     @search = search 
+    @search = search 
     
   end
 
@@ -18,18 +19,16 @@ attr_accessor :search
 
     @search = Tmdb::Search.movie(name).results
 
-      unless search[0].nil?
-        search
-       
+    unless search[0].nil?
+      self.search    
     end
   end
-  
 
   def show_list(bot, message)
-
+    
     search.each_with_index do |ele, index|
       bot.api.send_message(chat_id: message.chat.id, text: "Your title search : #{search[index]['original_title']} " "/info#{index}")
-
+    
     end 
   end
 
@@ -57,9 +56,12 @@ attr_accessor :search
   def pay(bot, message, arr, cost)
     total = arr.count * cost
     bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
-
+    arr.clear
   end
 
  
 
 end
+
+
+
