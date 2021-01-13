@@ -14,7 +14,7 @@ class Search_movie
     Tmdb::Api.key(@token_tmdb)
 
     container = Tmdb::Search.movie(name).results
-
+    
     container unless container[0].nil?
   end
 
@@ -33,8 +33,9 @@ end
   end
 
   def add_cart(user_input, container, cart_list)
-    index = user_input[4..5].to_i
 
+    index = user_input[4..5].to_i
+    
     unless container[0].nil?
       cart_list << container[index]['original_title']
     end

@@ -52,7 +52,7 @@ class Bot
           
           @movie_search = @logic.search_title(@user_input, search)         
           @logic.show_list(bot, message, @movie_search)  
-          
+        
         end
       end
     end
