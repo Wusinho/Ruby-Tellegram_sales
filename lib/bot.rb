@@ -17,7 +17,7 @@ class Bot
     @cart_list = []
     @nuevo = []
     @cost = 1
-
+    @total = 0
     puts 'running'
   end
 
@@ -48,13 +48,12 @@ class Bot
 
         elsif @user_input == '/pay'
 
-          #@logic.pay(@cart_list, @cost)
-          #bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
+          @total = @logic.pay(@cart_list, @cost)
+          bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{@total}")
 
         else
           
-          @pepe = @logic.search_title(@user_input, search)
-          
+          @pepe = @logic.search_title(@user_input, search)         
           @logic.show_list(bot, message, @pepe)  
           
         end
