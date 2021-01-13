@@ -41,10 +41,10 @@ class Bot
           
 
         elsif @user_input[0..3] == '/add'
-          #@logic.add_cart(@user_input, @cart_list, search)
+          @logic.add_cart(@user_input, @pepe, @cart_list)
 
-          #bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
-          #bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
+          bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
+          bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
 
         elsif @user_input == '/pay'
 
