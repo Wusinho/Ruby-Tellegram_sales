@@ -13,9 +13,8 @@ class Bot
     @logic = Search_movie.new
     @search = search
     @index = index
-    @pepe = []
+    @movie_search = []
     @cart_list = []
-    @nuevo = []
     @cost = 1
     @total = 0
     puts 'running'
@@ -33,15 +32,13 @@ class Bot
 
         elsif @user_input[0..4] == '/info'
 
-          @index = @logic.movie_overview(@user_input)
+          @index = @logic.movie_index(@user_input)
 
-          bot.api.send_message(chat_id: message.chat.id, text: "#{@pepe[@index]['title']} " "/add#{@index}")
-          bot.api.send_message(chat_id: message.chat.id, text: "Brief Overview : #{@pepe[@index]['overview']} ")
+          bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_search[@index]['title']} " "/add#{@index}")
+          bot.api.send_message(chat_id: message.chat.id, text: "Brief Overview : #{@movie_search[@index]['overview']} ")
           
-          
-
         elsif @user_input[0..3] == '/add'
-          @logic.add_cart(@user_input, @pepe, @cart_list)
+          @logic.add_cart(@user_input, @movie_search, @cart_list)
 
           bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
           bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
@@ -53,14 +50,15 @@ class Bot
 
         else
           
-          @pepe = @logic.search_title(@user_input, search)         
-          @logic.show_list(bot, message, @pepe)  
+          @movie_search = @logic.search_title(@user_input, search)         
+          @logic.show_list(bot, message, @movie_search)  
           
         end
       end
     end
   end
 
+  private
   def instruction
     "You can search for any kind of movies you want
     All movies cost $#{@cost}

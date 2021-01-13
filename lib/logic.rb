@@ -28,15 +28,9 @@ class Search_movie
   end
 end 
 
-
-
-
-  def movie_overview(user_input)
+  def movie_index(user_input)
     user_input[5..6].to_i
   end
-
-
-
 
   def add_cart(user_input, container, cart_list)
     index = user_input[4..5].to_i
@@ -45,10 +39,6 @@ end
       cart_list << container[index]['original_title']
     end
   end
-
-
-
-
 
   def pay(arr, cost)
     arr.count * cost
