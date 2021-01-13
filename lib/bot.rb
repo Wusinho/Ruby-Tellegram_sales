@@ -5,10 +5,15 @@ require 'telegram/bot'
 require_relative 'logic'
 
 class Bot
+
+  attr_accessor :search, :index
+
   def initialize
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
     @logic = Search_movie.new
-    
+    @search = search
+    @index = index
+    @pepe = []
     @cart_list = []
 
     @cost = 1
@@ -28,20 +33,30 @@ class Bot
 
         elsif @user_input[0..4] == '/info'
 
-          @logic.movie_overview(bot, message, @user_input)
+          indexo = @logic.movie_overview(@user_input, index)
+
+          bot.api.send_message(chat_id: message.chat.id, text: "#{@pepe[indexo]['original_title']} " "/add#{indexo}")
+          
+          bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@pepe[indexo]['overview']}  ")
 
         elsif @user_input[0..3] == '/add'
+          @logic.add_cart(@user_input, @cart_list, search)
 
-          @logic.add_cart(bot, message, @user_input, @cart_list)
+          bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
+          bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
 
         elsif @user_input == '/pay'
 
-          @logic.pay(bot, message, @cart_list, @cost)
-        else
+          @logic.pay(@cart_list, @cost)
+          bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
 
-          @logic.search_title(@user_input)
-          @logic.show_list(bot, message)  
-          @logic.search
+        else
+          
+          
+          @pepe = @logic.search_title(@user_input, search)
+          
+          @logic.show_list(bot, message, @pepe)  
+          
 
         end
       end
