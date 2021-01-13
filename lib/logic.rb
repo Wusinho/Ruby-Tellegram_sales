@@ -1,5 +1,3 @@
-
-require 'date'
 require 'themoviedb-api'
 require 'telegram/bot'
 # The movie API

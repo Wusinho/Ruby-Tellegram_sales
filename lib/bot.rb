@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# rubocop disable: Metrics/MethodLength
 
 require 'telegram/bot'
 
@@ -69,3 +69,5 @@ class Bot
     4.- Type /pay to purchase all the movies from your list."
   end
 end
+
+# rubocop enable: Metrics/MethodLength
