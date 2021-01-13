@@ -5,7 +5,7 @@ require 'themoviedb-api'
 require 'telegram/bot'
 
 class Search_movie
-  attr_accessor :search
+  attr_reader :search
 
   def initialize
     @token_tmdb = '2ed8d3de86cb00cde812d0ade32ea313'

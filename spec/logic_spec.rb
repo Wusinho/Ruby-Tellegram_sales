@@ -15,4 +15,8 @@ describe Search_movie do
   it 'it looks for the movie' do
     expect(start.search_title('terminator')).to be_a(Array)
   end
+
+
+
+  
 end

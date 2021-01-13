@@ -8,7 +8,7 @@ class Bot
   def initialize
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
     @logic = Search_movie.new
-
+    
     @cart_list = []
 
     @cost = 1
