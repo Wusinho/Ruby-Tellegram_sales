@@ -15,7 +15,7 @@ class Bot
     @index = index
     @pepe = []
     @cart_list = []
-
+    @nuevo = []
     @cost = 1
 
     puts 'running'
@@ -33,31 +33,30 @@ class Bot
 
         elsif @user_input[0..4] == '/info'
 
-          indexo = @logic.movie_overview(@user_input, index)
+          @index = @logic.movie_overview(@user_input)
 
-          bot.api.send_message(chat_id: message.chat.id, text: "#{@pepe[indexo]['original_title']} " "/add#{indexo}")
+          bot.api.send_message(chat_id: message.chat.id, text: "#{@pepe[@index]['title']} " "/add#{@index}")
+          bot.api.send_message(chat_id: message.chat.id, text: "Brief Overview : #{@pepe[@index]['overview']} ")
           
-          bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@pepe[indexo]['overview']}  ")
+          
 
         elsif @user_input[0..3] == '/add'
-          @logic.add_cart(@user_input, @cart_list, search)
+          #@logic.add_cart(@user_input, @cart_list, search)
 
-          bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
-          bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
+          #bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
+          #bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
 
         elsif @user_input == '/pay'
 
-          @logic.pay(@cart_list, @cost)
-          bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
+          #@logic.pay(@cart_list, @cost)
+          #bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{total}")
 
         else
-          
           
           @pepe = @logic.search_title(@user_input, search)
           
           @logic.show_list(bot, message, @pepe)  
           
-
         end
       end
     end
