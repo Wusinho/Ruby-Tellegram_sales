@@ -16,7 +16,21 @@ describe Search_movie do
     expect(start.search_title('terminator')).to be_a(Array)
   end
 
+  context 'when searching for a movie' do 
+    before do 
+      searcher = Search_movie.new
+      searcher.search_title('terminator')
+    end
+
+    it 'returns a list of matches' do
+      bot = double
+      expect(searcher.show_list(bot, message))
+  end
+    
+  end
 
 
-  
+
+
+
 end

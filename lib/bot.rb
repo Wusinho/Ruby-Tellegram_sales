@@ -40,7 +40,8 @@ class Bot
         else
 
           @logic.search_title(@user_input)
-          @logic.show_list(bot, message)
+          @logic.show_list(bot, message)  
+          @logic.search
 
         end
       end

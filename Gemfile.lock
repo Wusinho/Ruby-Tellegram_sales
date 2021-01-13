@@ -78,6 +78,7 @@ PLATFORMS
 DEPENDENCIES
   reek (~> 6.0, >= 6.0.3)
   rspec (~> 3.10)
+  rspec-mocks (~> 3.10)
   telegram-bot-ruby
   themoviedb-api (~> 1.3)
 

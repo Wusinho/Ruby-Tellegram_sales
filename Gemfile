@@ -8,3 +8,4 @@ gem 'rspec', '~> 3.10'
 gem 'telegram-bot-ruby'
 gem 'themoviedb-api', '~> 1.3'
 gem 'reek', '~> 6.0', '>= 6.0.3'
+gem "rspec-mocks", "~> 3.10", :group => :test
