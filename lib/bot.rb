@@ -3,14 +3,13 @@
 require 'telegram/bot'
 
 require_relative 'logic'
-
+# Telegraph Bot
 class Bot
-
   attr_accessor :search, :index
 
   def initialize
     @token_telegram = '1407248820:AAF3aSx6WGfGQqWSfDx6odMpDEiZzUsCE2I'
-    @logic = Search_movie.new
+    @logic = SearchMovie.new
     @search = search
     @index = index
     @movie_search = []
@@ -36,7 +35,7 @@ class Bot
 
           bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_search[@index]['title']} " "/add#{@index}")
           bot.api.send_message(chat_id: message.chat.id, text: "Brief Overview : #{@movie_search[@index]['overview']} ")
-          
+
         elsif @user_input[0..3] == '/add'
           @logic.add_cart(@user_input, @movie_search, @cart_list)
 
@@ -49,16 +48,17 @@ class Bot
           bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{@total}")
 
         else
-          
-          @movie_search = @logic.search_title(@user_input, search)         
-          @logic.show_list(bot, message, @movie_search)  
-        
+
+          @movie_search = @logic.search_title(@user_input, search)
+          @logic.show_list(bot, message, @movie_search)
+
         end
       end
     end
   end
 
   private
+
   def instruction
     "You can search for any kind of movies you want
     All movies cost $#{@cost}
