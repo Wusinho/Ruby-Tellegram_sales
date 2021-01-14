@@ -1,5 +1,6 @@
-require 'telegram/bot'
+# rubocop disable:  Lint/UselessAssignment
 
+require 'telegram/bot'
 require_relative '../lib/logic'
 require 'rspec'
 
@@ -47,3 +48,5 @@ describe Search_movie do
     expect(start.pay([], 4)).to eql(0)
   end
 end
+
+# rubocop enable:  Lint/UselessAssignment
