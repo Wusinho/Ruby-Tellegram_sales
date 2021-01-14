@@ -67,6 +67,9 @@ bundle exec ruby /bin/main.rb
 rspec
 ```
 
+![screenshot](assets/Rspec.png)
+All test pass.
+
 ## Author
 
 <b>Heber Lazo</b>
