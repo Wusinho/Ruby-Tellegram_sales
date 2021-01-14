@@ -4,7 +4,7 @@ require 'telegram/bot'
 require_relative '../lib/logic'
 require 'rspec'
 
-describe Search_movie do
+describe SearchMovie do
  
   let(:start) { SearchMovie.new }
 
@@ -37,7 +37,7 @@ describe Search_movie do
   end
 
   it 'add the movie to a list' do
-    expect(start.add_cart('/add1', [original_title = 'Croods', original_title = 'Croods'], [])).to be_a(Array)
+    expect(start.add_cart('/add1', ['Croods', 'Croodsx'], [])).to be_a(Array)
   end
 
   it 'is the total amount of money you will pay' do
