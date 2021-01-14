@@ -1,3 +1,5 @@
+# rubocop:disable Lint/ShadowedArgument, Style/GuardClause
+
 require 'themoviedb-api'
 require 'telegram/bot'
 # The movie API
@@ -38,3 +40,5 @@ class SearchMovie
     arr.count * cost
   end
 end
+
+# rubocop:enable Lint/ShadowedArgument, Style/GuardClause

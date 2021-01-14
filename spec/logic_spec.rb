@@ -1,4 +1,4 @@
-# rubocop disable:  Lint/UselessAssignment
+# rubocop:disable Style/WordArray
 
 require 'telegram/bot'
 require_relative '../lib/logic'
@@ -49,4 +49,4 @@ describe SearchMovie do
   end
 end
 
-# rubocop enable:  Lint/UselessAssignment
+# rubocop:enable Style/WordArray
