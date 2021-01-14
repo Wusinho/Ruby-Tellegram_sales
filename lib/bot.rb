@@ -28,27 +28,18 @@ class Bot
         if @user_input == '/start'
           bot.api.send_message(chat_id: message.chat.id, text: "Hello #{@user_name}.")
           bot.api.send_message(chat_id: message.chat.id, text: instruction)
-
         elsif @user_input[0..4] == '/info'
-
           @index = @logic.movie_index(@user_input)
-
           bot.api.send_message(chat_id: message.chat.id, text: "#{@movie_search[@index]['title']} " "/add#{@index}")
           bot.api.send_message(chat_id: message.chat.id, text: "Brief Overview : #{@movie_search[@index]['overview']} ")
-
         elsif @user_input[0..3] == '/add'
           @logic.add_cart(@user_input, @movie_search, @cart_list)
-
           bot.api.send_message(chat_id: message.chat.id, text: 'Your Cart list:')
           bot.api.send_message(chat_id: message.chat.id, text: "Movie overview: #{@cart_list}  ")
-
         elsif @user_input == '/pay'
-
           @total = @logic.pay(@cart_list, @cost)
           bot.api.send_message(chat_id: message.chat.id, text: "Your total purchase is $#{@total}")
-
         else
-
           @movie_search = @logic.search_title(@user_input, search)
           @logic.show_list(bot, message, @movie_search)
 
