@@ -23,6 +23,20 @@ You can search for your movies by tittle, add them to your shopping cart and buy
 
 ## Getting Started
 
+## 📝 Setup the telegramBot
+
+- Download Telegram or enter to https://web.telegram.org/#/login
+
+- Sign in Telegram
+
+- Open telegram.
+
+- Search for: @xuxuruca_bot
+
+- Click on start
+
+- Follow instructions
+
 > Take a copy of this project locally
 
 - Go to github.
@@ -30,7 +44,7 @@ You can search for your movies by tittle, add them to your shopping cart and buy
 - Clone it using git clone.
 
 ```
-git clone 'repo_link'
+git clone "https://github.com/Wusinho/Ruby-Capstone-Project.git"
 ```
 
 - On the terminal type
@@ -44,8 +58,6 @@ bundle install
 ```
 bundle exec ruby /bin/main.rb
 ```
-
-- now open your telegram and search to @xuxuruca_bot
 
 ## Test it
 
