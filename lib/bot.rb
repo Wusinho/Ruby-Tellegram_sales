@@ -1,4 +1,4 @@
-# rubocop disable: Metrics/MethodLength
+# rubocop:disable Metrics/MethodLength
 
 require 'telegram/bot'
 
@@ -61,4 +61,4 @@ class Bot
   end
 end
 
-# rubocop enable: Metrics/MethodLength
+# rubocop:enable Metrics/MethodLength
