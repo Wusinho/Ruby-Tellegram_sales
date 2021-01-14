@@ -5,7 +5,6 @@ require_relative '../lib/logic'
 require 'rspec'
 
 describe SearchMovie do
- 
   let(:start) { SearchMovie.new }
 
   it 'looks for the movie if exists' do
