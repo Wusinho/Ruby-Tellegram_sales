@@ -78,8 +78,6 @@ All test pass.
 
 ## Acknowledgments
 
-- [Microverse](https://www.microverse.org/)
-- [The Odin Project](https://www.theodinproject.com)
 - [Telegram](https://web.telegram.org/)
 - [TMDB](https://www.themoviedb.org/)![screenshot](assets/logo.svg)
 
