@@ -1,4 +1,3 @@
-# Ruby-Capstone-Project
 
 # Telegram Bot - Movie App
 
